@@ -32,14 +32,27 @@ export default function Slug() {
   }, [slug])
 
   // 🔹 Handle color selection
-  const handleColorChange = (color) => {
-    if (!product) return
+const handleColorChange = (color) => {
+  if (!product) return
 
-    // 🔁 Toggle logic
-    setSelectedColor(prev => (prev === color ? "" : color))
+  setSelectedColor(prev => {
+    const newColor = prev === color ? "" : color
 
-    router.replace(router.asPath, undefined, { scroll: false })
-  }
+    // 🔒 If size is not available for new color, reset size
+    if (newColor && selectedSize) {
+      const sizeExists = product.variants.some(
+        v => v.color === newColor && v.size === selectedSize && v.qty > 0
+      )
+      if (!sizeExists) {
+        setSelectedSize("")
+      }
+    }
+
+    return newColor
+  })
+
+  router.replace(router.asPath, undefined, { scroll: false })
+}
 
 
 
@@ -77,7 +90,8 @@ export default function Slug() {
     }
 
     const productItem = {
-      name: slug,
+     name: `${slug}${selectedColor || selectedSize ? ` (${selectedColor || "—"} / ${selectedSize || "—"})` : ""}`,
+
       price: price.replace("Rs. ", "").replace(",", ""),
       src,
       category,
@@ -109,7 +123,8 @@ export default function Slug() {
 
           <img
             alt={slug}
-            className="lg:w-1/2 w-full object-cover object-top rounded max-h-[500px]"
+            className="lg:w-1/2 w-full object-contain rounded max-h-[500px] scale-90"
+
             src={src}
           />
 
