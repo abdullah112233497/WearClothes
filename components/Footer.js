@@ -15,74 +15,74 @@ const Footer = () => {
   {/* <span className="ml-3 text-xl">WearClothes</span> */}
 </Link>
       
-      <p className="mt-2 text-sm text-gray-500">WearClothes — Dress Your Story</p>
+      <p className="mt-2 text-sm text-gray-500">WearClothes — Dress Your Dreams</p>
     </div>
     <div className="flex-grow flex flex-wrap md:pr-20 -mb-10 md:text-left text-center order-first">
       <div className="lg:w-1/4 md:w-1/2 w-full px-4">
         <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
         <nav className="list-none mb-10">
           <li>
-            <a className="text-gray-600 hover:text-gray-800">First Link</a>
+            <Link className="text-gray-600 hover:text-gray-800" href={"/tshirts"}>T-Shirt</Link>
           </li>
           <li>
-            <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+            <Link className="text-gray-600 hover:text-gray-800" href={"/hoodies"}>Hoodies</Link>
           </li>
           <li>
-            <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+            <Link className="text-gray-600 hover:text-gray-800" href={"/stickers"}>Stickers</Link>
           </li>
           <li>
-            <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
-          </li>
-        </nav>
-      </div>
-      <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
-        <nav className="list-none mb-10">
-          <li>
-            <a className="text-gray-600 hover:text-gray-800">First Link</a>
-          </li>
-          <li>
-            <a className="text-gray-600 hover:text-gray-800">Second Link</a>
-          </li>
-          <li>
-            <a className="text-gray-600 hover:text-gray-800">Third Link</a>
-          </li>
-          <li>
-            <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+            <Link className="text-gray-600 hover:text-gray-800" href={"/mugs"}>Mugs</Link>
           </li>
         </nav>
       </div>
       <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+        <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">SERVICES</h2>
         <nav className="list-none mb-10">
           <li>
-            <a className="text-gray-600 hover:text-gray-800">First Link</a>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">Shipping & Payment</a>
           </li>
           <li>
-            <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">FAQs</a>
           </li>
           <li>
-            <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">Returns</a>
           </li>
           <li>
-            <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">Term and Conditions</a>
           </li>
         </nav>
       </div>
       <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-        <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
+        <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">CONTACT US</h2>
         <nav className="list-none mb-10">
           <li>
-            <a className="text-gray-600 hover:text-gray-800">First Link</a>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">Email</a>
           </li>
           <li>
-            <a className="text-gray-600 hover:text-gray-800">Second Link</a>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">Facebook</a>
           </li>
           <li>
-            <a className="text-gray-600 hover:text-gray-800">Third Link</a>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">Instagram</a>
           </li>
           <li>
-            <a className="text-gray-600 hover:text-gray-800">Fourth Link</a>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">Linkedin</a>
+          </li>
+        </nav>
+      </div>
+      <div className="lg:w-1/4 md:w-1/2 w-full px-4">
+        <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">COLLABRATIONS</h2>
+        <nav className="list-none mb-10">
+          <li>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">Khaas Look </a>
+          </li>
+          <li>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">Codes Wear</a>
+          </li>
+          <li>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">Techloset Solutions</a>
+          </li>
+          <li>
+            <a className="text-gray-600 hover:text-gray-800 cursor-pointer">OrillIa-TheCoffeeandomo</a>
           </li>
         </nav>
       </div>
