@@ -1,7 +1,12 @@
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
+import { ToastContainer, toast, Bounce } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
+  
 export default function Slug() {
+
+
   const router = useRouter()
   const { slug, price, src, category } = router.query
 
@@ -78,8 +83,34 @@ const handleColorChange = (color) => {
   const checkserviceability = async () => {
     const pins = await fetch("/api/pincode")
     const pinJson = await pins.json()
-    if (pinJson.includes(parseInt(pin))) setservice(true)
-    else setservice(false)
+    if (pinJson.includes(parseInt(pin))) {setservice(true)
+ toast.success('Yes, Pincode is avaliable!', {
+position: "bottom-center",
+autoClose: 1500,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+// progress:0.1,
+theme: "light",
+transition: Bounce,
+});}
+    else {
+      
+      setservice(false)
+ toast.error('Sorry, Pincode is not avaliable.', {
+position: "bottom-center",
+autoClose: 1500,
+hideProgressBar: false,
+closeOnClick: false,
+pauseOnHover: true,
+draggable: true,
+// progress:0.1,
+theme: "light",
+transition: Bounce,
+})
+
+    }
   }
 
   // 🔹 Add to Cart
@@ -110,6 +141,31 @@ const handleColorChange = (color) => {
     window.dispatchEvent(new Event("cartUpdated"))
     window.dispatchEvent(new Event("openCartDrawer"))
   }
+  const buyNow = () => {
+  if (!slug || !price || !src) {
+    alert("Product not ready yet. Please try again!")
+    return
+  }
+
+  const productItem = {
+    name: `${slug}${selectedColor || selectedSize ? ` (${selectedColor || "—"} / ${selectedSize || "—"})` : ""}`,
+    price: price.replace("Rs. ", "").replace(",", ""),
+    src,
+    category,
+    size: selectedSize,
+    quantity: 1,
+  }
+
+  // 🔥 CLEAR CART FIRST
+  localStorage.setItem("cart", JSON.stringify([productItem]))
+
+  // 🔔 Update navbar
+  window.dispatchEvent(new Event("cartUpdated"))
+
+  // ➡️ REDIRECT TO CHECKOUT
+  router.push("/checkout")
+}
+
 
   if (!product) return <p className="text-center py-24">Loading Product...</p>
 
@@ -118,6 +174,19 @@ const handleColorChange = (color) => {
 
   return (
     <section className="text-gray-600 body-font overflow-hidden">
+      <ToastContainer
+position="bottom-center"
+autoClose={1500}
+hideProgressBar={false}
+newestOnTop={false}
+closeOnClick={false}
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+transition={Bounce}
+/>
       <div className="container px-5 py-24 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap lg:flex-nowrap">
 
@@ -205,7 +274,13 @@ const handleColorChange = (color) => {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-3">
                   <span className="title-font font-medium text-xl sm:text-2xl text-gray-900">{price}</span>
                   <div className="flex flex-col sm:flex-row sm:ml-auto gap-2 w-full sm:w-auto">
-                    <button className="w-full sm:w-auto text-white bg-indigo-500 py-2 px-6 rounded">Buy Now</button>
+                   <button
+  onClick={buyNow}
+  className="w-full sm:w-auto text-white bg-indigo-500 py-2 px-6 rounded"
+>
+  Buy Now
+</button>
+
                     <button
                       onClick={addProductToCart}
                       className="w-full sm:w-auto text-white bg-indigo-500 py-2 px-6 rounded"
@@ -224,18 +299,12 @@ const handleColorChange = (color) => {
                     type="text"
                   />
                   <button
-                    onClick={() => {
-                      const check = async () => {
-                        const pins = await fetch("/api/pincode")
-                        const pinJson = await pins.json()
-                        if (pinJson.includes(parseInt(pin))) setservice(true)
-                        else setservice(false)
-                      }
-                      check()
-                    }}
-                    className="text-white bg-indigo-500 py-2 px-6 rounded"
-                  >
+  onClick={checkserviceability}
+  className="text-white bg-indigo-500 py-2 px-6 rounded"
+>
+
                     Check
+
                   </button>
                 </div>
               </>
